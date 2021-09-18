@@ -9,7 +9,7 @@ import * as yup from "yup";
 
 const schema = yup.object().shape({
     lnmpDate: yup.date(),
-    lnmpCertain: yup.boolean(),
+    lnmpCertain: yup.string(),
     ultrasoundDate: yup.date(),
     bpd: yup.number(),
     hc: yup.number(),
@@ -19,14 +19,14 @@ const schema = yup.object().shape({
     placentaPosition: yup.string(),
     placentaConsistency: yup.string(),
     averageGestation: yup.string(),
-    singleton: yup.boolean(),
-    multipleGestations: yup.boolean(),
-    intraUterinePregnancy: yup.boolean(),
+    singleton: yup.string(),
+    multipleGestations: yup.string(),
+    intraUterinePregnancy: yup.string(),
   });
 
 const initialValues = {
     lnmpDate: new Date(),
-    lnmpCertain: false,
+    lnmpCertain: '',
     ultrasoundDate: new Date(),
     bpd: 0,
     hc: 0,
@@ -36,9 +36,9 @@ const initialValues = {
     placentaPosition: '',
     placentaConsistency: '',
     averageGestation: '',
-    singleton: false,
-    multipleGestations: false,
-    intraUterinePregnancy: false,
+    singleton: '',
+    multipleGestations: '',
+    intraUterinePregnancy: '',
 }
 
 const booleanItems = [
@@ -51,7 +51,7 @@ const GestationalProfile = () => {
     return (
         <Formik
             validationSchema={schema}
-            onSubmit={() => console.log("Fired")}
+            onSubmit={(values) => console.log(values)}
             initialValues = {initialValues}
         >
             {({
@@ -69,12 +69,16 @@ const GestationalProfile = () => {
                             <h2>Last Normal Menstrual Period</h2>
                             <Controls.DatePicker
                                 name="lnmpDate"
-                                label="Date of LNMP"
+                                label="Date of Last Normal Menstrual Period"
+                                value={values.lnmpDate}
+                                onChange={handleChange}
                             />
                             <Controls.RadioGroup
                                 name="lnmpCertain"
                                 label="Certain?"
                                 items={booleanItems}
+                                value={values.lnmpCertain}
+                                onChange={handleChange}
                             />
                         </Grid>
 
@@ -83,101 +87,122 @@ const GestationalProfile = () => {
                     <Grid item xs={6}>
                             <h2>Ultrasound</h2>
                             <Controls.DatePicker
-                                label="Date of Ultrsound"
                                 name="ultrasoundDate"
+                                label="Date of Ultrsound"
+                                value={values.ultrasoundDate}
+                                onChange={handleChange}
                             />
                     </Grid>
 
                     <Grid container>
                         <Grid item xs={6}>
                             <Controls.Input
-                                label="bpd"
-                                name="BPD"
+                                name="bpd"
+                                label="Biparietal Diameter (mm)"
+                                value={values.bpd}
+                                onChange={handleChange}
                             />
                         </Grid>
                         <Grid item xs={6}>
                             <Controls.Input
-                                label="hc"
-                                name="HC"
+                                name="hc"
+                                label="Head Circumfrence"
+                                value={values.hc}
+                                onChange={handleChange}
                             />
                         </Grid>
 
                         <Grid item xs={6}>
                             <Controls.Input
-                                label="ac"
-                                name="AC"
+                                name="ac"
+                                label="Abdominal Circumference"
+                                value={values.ac}
+                                onChange={handleChange}
                             />
                         </Grid>
 
                         <Grid item xs={6}>
                             <Controls.Input
-                                label="fl"
-                                name="FL"
+                                name="fl"
+                                label="Femur Length"
+                                value={values.fl}
+                                onChange={handleChange}
                             />
                         </Grid>
 
                         <Grid item xs={6}>
                             <Controls.Input
-                                label="afi"
-                                name="AFI"
+                                name="afi"
+                                label="Amniotic Fluid Index"
+                                value={values.afi}
+                                onChange={handleChange}
                             />
                         </Grid>
-                    </Grid>
-
-                    <Grid item xs={6}>
-                            <h2>Placenta</h2>
                     </Grid>
 
                     <Grid>
+                        <h2>Placenta</h2>
+
                         <Controls.Input
-                            label="Placenta Position"
                             name="placentaPosition"
+                            label="Placenta Position"
                             multiline={true}
+                            value={values.placentaPosition}
+                            onChange={handleChange}
                         />
 
                         <Controls.Input
-                            label="Placenta Consistency"
                             name="placentaConsistency"
+                            label="Placenta Consistency"
                             multiline={true}
+                            value={values.placentaConsistency}
+                            onChange={handleChange}
                         />
                     </Grid>
 
                     <Grid>
                         <h2>Gestation</h2>
                         <Controls.Input
-                            label="Average Gestation"
                             name="averageGestation"
-                            
+                            label="Average Gestation"
+                            value={values.averageGestation}
+                            onChange={handleChange}
                         />
-                    </Grid>
 
-                    <Grid container>
-                        <Grid item xs={3}>
-                        <Controls.RadioGroup
-                                name="singleton"
-                                label="Singleton?"
-                                items={booleanItems}
-                            />
-                        </Grid>
-                        <Grid item xs={3}>
-                        <Controls.RadioGroup
-                                name="multipleGestations"
-                                label="Multiple Gestations?"
-                                items={booleanItems}
-                            />
-                        </Grid>
-                        <Grid item xs={6}>
-                        <Controls.RadioGroup
-                                name="intraUterinePregnancy"
-                                label="Intra-Uterine Pregnancy?"
-                                items={booleanItems}
-                            />
+                        <Grid container>
+                            <Grid item xs={3}>
+                            <Controls.RadioGroup
+                                    name="singleton"
+                                    label="Singleton?"
+                                    items={booleanItems}
+                                    value={values.singleton}
+                                    onChange={handleChange}
+                                />
+                            </Grid>
+                            <Grid item xs={3}>
+                            <Controls.RadioGroup
+                                    name="multipleGestations"
+                                    label="Multiple Gestations?"
+                                    items={booleanItems}
+                                    value={values.multipleGestations}
+                                    onChange={handleChange}
+                                />
+                            </Grid>
+                            <Grid item xs={6}>
+                            <Controls.RadioGroup
+                                    name="intraUterinePregnancy"
+                                    label="Intra-Uterine Pregnancy?"
+                                    items={booleanItems}
+                                    value={values.intraUterinePregnancy}
+                                    onChange={handleChange}
+                                />
+                            </Grid>
                         </Grid>
                     </Grid>
 
                     <div>
                         <Controls.Button
-                            text="Continue"
+                            text="Submit and Continue"
                             onClick={handleSubmit} />
                     </div>
 
