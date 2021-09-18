@@ -8,7 +8,7 @@ function App() {
   const { entry } = data;
   const config = {
     method  : 'get',
-    url     : `${process.env.REACT_APP_API_URL}/Patient`,
+    url     : `${process.env.REACT_APP_API_URL}/DiagnosticReport`,
     headers : {
       'x-api-key' : process.env.REACT_APP_XAPIKEY
     }
@@ -34,7 +34,7 @@ function App() {
 
   const handleButton = () => {
     setPatientData(fetchPatientData);
-    console.log(patientData);
+    // console.log(patientData);
   };
 
   return (
