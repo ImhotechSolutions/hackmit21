@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Grid, } from '@material-ui/core';
 import Controls from "../../../components/controls/Controls";
 import { useForm, Form } from '../../../components/useForm';
-import * as employeeService from "../../../services/employeeService";
+import * as patientService from "../../../services/patientService";
 
 import { Formik } from "formik";
 import * as yup from "yup";
@@ -51,7 +51,7 @@ const GestationalProfile = () => {
     return (
         <Formik
             validationSchema={schema}
-            onSubmit={(values) => console.log(values)}
+            onSubmit={(values) => patientService.insertPatient(values)}
             initialValues = {initialValues}
         >
             {({
