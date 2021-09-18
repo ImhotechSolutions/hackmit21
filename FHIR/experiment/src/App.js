@@ -1,7 +1,15 @@
 import data from './sample/sample-patient-data.json';
+import axios from 'axios';
 
 function App() {
   const { entry } = data;
+  const config = {
+    method  : 'get',
+    url     : `${process.env.REACT_APP_API_URL}/Patient`,
+    headers : {
+      'x-api-key' : process.env.REACT_APP_XAPIKEY
+    }
+  };
 
   return (
     <div className='App'>
@@ -19,7 +27,20 @@ function App() {
         </a>
       </header>
 
-      {entry.map(person => <p key={person.resource.id}>{person.resource.name[0].given}</p>)}
+      {axios(config)
+        .then(function(response) {
+          console.log(JSON.stringify(response.data));
+          const { entry: patientData } = response.data;
+          console.log(patientData);
+          patientData.map(person => (
+            <p key={person.resource.id}>{person.resource.name[0].given}</p>
+          ));
+        })
+        .catch(function(error) {
+          console.log(error);
+        })}
+
+      {/* {patientData.map(person => <p key={person.resource.id}>{person.resource.name[0].given}</p>)} */}
     </div>
   );
 }
