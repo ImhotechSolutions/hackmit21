@@ -20,7 +20,7 @@ const schema = yup.object().shape({
     placentaConsistency: yup.string(),
     averageGestation: yup.string(),
     singleton: yup.boolean(),
-    multipleGestation: yup.boolean(),
+    multipleGestations: yup.boolean(),
     intraUterinePregnancy: yup.boolean(),
   });
 
@@ -37,11 +37,11 @@ const initialValues = {
     placentaConsistency: '',
     averageGestation: '',
     singleton: false,
-    multipleGestation: false,
+    multipleGestations: false,
     intraUterinePregnancy: false,
 }
 
-const lnmpCertainItems = [
+const booleanItems = [
     { id: 'yes', title: 'Yes' },
     { id: 'no', title: 'No' },
 ]
@@ -74,7 +74,7 @@ const GestationalProfile = () => {
                             <Controls.RadioGroup
                                 name="lnmpCertain"
                                 label="Certain?"
-                                items={lnmpCertainItems}
+                                items={booleanItems}
                             />
                         </Grid>
 
@@ -128,21 +128,58 @@ const GestationalProfile = () => {
                             <h2>Placenta</h2>
                     </Grid>
 
+                    <Grid>
+                        <Controls.Input
+                            label="Placenta Position"
+                            name="placentaPosition"
+                            multiline={true}
+                        />
+
+                        <Controls.Input
+                            label="Placenta Consistency"
+                            name="placentaConsistency"
+                            multiline={true}
+                        />
+                    </Grid>
+
+                    <Grid>
+                        <h2>Gestation</h2>
+                        <Controls.Input
+                            label="Average Gestation"
+                            name="averageGestation"
+                            
+                        />
+                    </Grid>
+
                     <Grid container>
-                        <Grid item xs={6}>
-                            <Controls.Input
-                                label="Placenta Position"
-                                name="placentaPosition"
+                        <Grid item xs={3}>
+                        <Controls.RadioGroup
+                                name="singleton"
+                                label="Singleton?"
+                                items={booleanItems}
                             />
                         </Grid>
-
+                        <Grid item xs={3}>
+                        <Controls.RadioGroup
+                                name="multipleGestations"
+                                label="Multiple Gestations?"
+                                items={booleanItems}
+                            />
+                        </Grid>
                         <Grid item xs={6}>
-                            <Controls.Input
-                                label="Placenta Position"
-                                name="placentaConsistency"
+                        <Controls.RadioGroup
+                                name="intraUterinePregnancy"
+                                label="Intra-Uterine Pregnancy?"
+                                items={booleanItems}
                             />
                         </Grid>
                     </Grid>
+
+                    <div>
+                        <Controls.Button
+                            text="Continue"
+                            onClick={handleSubmit} />
+                    </div>
 
                 </Form>
             )}
