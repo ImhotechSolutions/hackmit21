@@ -1,10 +1,10 @@
 const express = require('express');
-const fhirClient = require('fhirclient');
 const axios = require('axios');
 const PORT = process.env.PORT || 3001;
 const app = express();
 require('dotenv').config();
 
+// Info needed to connect to FHIR
 const config = {
   method  : 'get',
   url     : `${process.env.API_URL}/Procedure`,
@@ -13,10 +13,11 @@ const config = {
   }
 };
 
+// Temp function to get procedure data
 axios(config).then(({ data }) => {
-  const { entry: patientData } = data;
-  console.log(patientData);
-  return patientData;
+  const { entry: procedures } = data;
+  console.log(procedures);
+  return procedures;
 });
 
 app.get('/api', (req, res) => {
