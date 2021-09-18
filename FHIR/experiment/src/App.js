@@ -1,6 +1,8 @@
-import './App.css';
+import data from './sample/sample-patient-data.json';
 
 function App() {
+  const { entry } = data;
+
   return (
     <div className='App'>
       <header className='App-header'>
@@ -16,6 +18,8 @@ function App() {
           Learn React
         </a>
       </header>
+
+      {entry.map(person => <p key={person.resource.id}>{person.resource.name[0].given}</p>)}
     </div>
   );
 }
