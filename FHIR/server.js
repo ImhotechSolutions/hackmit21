@@ -27,15 +27,15 @@ const configSingle = id => {
   };
 };
 
-// const configURL = url => {
-//   return {
-//     method  : 'get',
-//     url     : url,
-//     headers : {
-//       'x-api-key' : process.env.XAPIKEY
-//     }
-//   };
-// };
+const configURL = url => {
+  return {
+    method  : 'get',
+    url     : url,
+    headers : {
+      'x-api-key' : process.env.XAPIKEY
+    }
+  };
+};
 
 // Temp function to get procedure data
 const getProcedures = async (id = '') => {
@@ -44,7 +44,6 @@ const getProcedures = async (id = '') => {
   const procedures = axios(configSingle(id)).then(res => {
     return res.data.entry;
   });
-
   return procedures;
 };
 
@@ -56,13 +55,12 @@ const getProcedures = async (id = '') => {
 //   });
 // };
 
-// const getProcedureURL = async url => {
-//   return axios(configURL(url)).then(res => {
-//     const procedures = res.data;
-//     // console.log(procedures);
-//     return procedures;
-//   });
-// };
+const getProcedureURL = async url => {
+  const procedures = axios(configURL(url)).then(res => {
+    return res.data.entry;
+  });
+  return procedures;
+};
 
 // getProcedureURL(
 //   'https://fhir.r9ymi5mtircd.static-test-account.isccloud.io/Procedure?page=2&queryId=69354794-1929-11ec-8a16-02f9c47f2922'
@@ -71,7 +69,16 @@ const getProcedures = async (id = '') => {
 // create a GET route
 // Return the procedure data
 app.get('/api', async (req, res) => {
-  const procedure = await getProcedures();
+  let procedure = await getProcedures();
+
+  for (let i = 2; i < 8; i++) {
+    procedure = procedure.concat(
+      await getProcedureURL(
+        `https://fhir.r9ymi5mtircd.static-test-account.isccloud.io/Procedure?page=${i}&queryId=1e353518-193f-11ec-a8d1-02f9c47f2922`
+      )
+    );
+  }
+
   console.log(procedure);
   res.send(JSON.stringify(procedure));
 });
