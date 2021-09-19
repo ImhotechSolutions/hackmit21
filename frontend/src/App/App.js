@@ -69,9 +69,6 @@ function App() {
             <li>
               <Link to='/view'>View</Link>
             </li>
-            <li>
-              <Link to='/topics'>Topics</Link>
-            </li>
           </ul>
         </nav>
 
