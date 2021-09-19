@@ -1,5 +1,7 @@
 # Imhotech Solutions
 
+![Project Demo](./Demo.png)
+
 We built a solution for maternal physicans in South Africa to quickly and effectively conduct their examinations
 
 ## Tech Stack
