@@ -1,61 +1,85 @@
 import React from 'react';
 import './App.css';
-import SideMenu from "../components/SideMenu";
-import { makeStyles, CssBaseline, createMuiTheme, ThemeProvider } from '@material-ui/core';
-import Header from "../components/Header";
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import SideMenu from '../components/SideMenu';
+import { makeStyles, CssBaseline, createTheme, ThemeProvider } from '@material-ui/core';
+import Header from '../components/Header';
 import PageHeader from '../components/PageHeader';
 
-import Patient from "../pages/Patients/Patient";
+import Patient from '../pages/Patients/Patient';
 
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: "#333996",
-      light: '#3c44b126'
+const theme = createTheme({
+  palette   : {
+    primary    : {
+      main  : '#333996',
+      light : '#3c44b126'
     },
-    secondary: {
-      main: "#f83245",
-      light: '#f8324526'
+    secondary  : {
+      main  : '#f83245',
+      light : '#f8324526'
     },
-    background: {
-      default: "#f4f5fd"
-    },
+    background : {
+      default : '#f4f5fd'
+    }
   },
-  overrides:{
-    MuiAppBar:{
-      root:{
-        transform:'translateZ(0)'
+  overrides : {
+    MuiAppBar : {
+      root : {
+        transform : 'translateZ(0)'
       }
     }
   },
-  props:{
-    MuiIconButton:{
-      disableRipple:true
+  props     : {
+    MuiIconButton : {
+      disableRipple : true
     }
   }
-})
-
+});
 
 const useStyles = makeStyles({
-  appMain: {
-    paddingLeft: '320px',
-    width: '100%'
+  appMain : {
+    paddingLeft : '320px',
+    width       : '100%'
   }
-})
+});
 
 function App() {
   const classes = useStyles();
 
   return (
-    <ThemeProvider theme={theme}>
-      <SideMenu />
-      <div className={classes.appMain}>
-        <Header />
-        
-        <Patient />
+    <Router>
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <Link to='/'>Home</Link>
+            </li>
+            <li>
+              <Link to='/exam'>Exam</Link>
+            </li>
+            <li>
+              <Link to='/view'>View</Link>
+            </li>
+          </ul>
+        </nav>
+
+        <ThemeProvider theme={theme}>
+          <SideMenu />
+          <div className={classes.appMain}>
+            <Header />
+            <Switch>
+              <Route exact path='/view'>
+                <h1>tbd...</h1>
+              </Route>
+              <Route exact path='/exam'>
+                <Patient />
+              </Route>
+            </Switch>
+          </div>
+          <CssBaseline />
+        </ThemeProvider>
       </div>
-      <CssBaseline />
-    </ThemeProvider>
+    </Router>
   );
 }
 
