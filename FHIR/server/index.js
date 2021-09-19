@@ -1,10 +1,14 @@
 const express = require('express');
 const app = express();
+
 const axios = require('axios');
+const cors = require('cors');
 require('dotenv').config();
 
-const PORT = process.env.PORT || 9000;
+app.use(cors());
+app.use(express.json());
 
+const PORT = process.env.PORT || 9000;
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
@@ -31,6 +35,8 @@ app.get('/api', (req, res) => {
 
 // create a GET route
 app.get('/express_backend', (req, res) => {
-  //Line 9
   res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' }); //Line 10
-}); //Line 11
+});
+
+const procedure = require('../routes/procedure');
+app.use('/procedure', procedure);
