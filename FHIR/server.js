@@ -69,9 +69,10 @@ const getProcedureURL = async url => {
 // create a GET route
 // Return the procedure data
 app.get('/api', async (req, res) => {
-  let procedure = await getProcedures();
+  // let procedure = await getProcedures();
+  let procedure = [];
 
-  for (let i = 2; i < 8; i++) {
+  for (let i = 1; i < 8; i++) {
     procedure = procedure.concat(
       await getProcedureURL(
         `https://fhir.r9ymi5mtircd.static-test-account.isccloud.io/Procedure?page=${i}&queryId=1e353518-193f-11ec-a8d1-02f9c47f2922`
