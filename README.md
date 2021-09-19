@@ -1,6 +1,8 @@
 # Imhotech Solutions
 
-![Project Demo](./Demo.png)
+<p align="center">
+  <img width="460" height="300" src="./Demo.png">
+</p>
 
 We built a solution for maternal physicans in South Africa to quickly and effectively conduct their examinations
 
