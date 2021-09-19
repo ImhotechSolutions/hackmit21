@@ -7,6 +7,7 @@ import Header from '../components/Header';
 import PageHeader from '../components/PageHeader';
 
 import Patient from '../pages/Patients/Patient';
+import DataDisplay from '../pages/DataDisplay/DataDisplay';
 
 const theme = createTheme({
   palette   : {
@@ -69,7 +70,7 @@ function App() {
             <Header />
             <Switch>
               <Route exact path='/view'>
-                <h1>tbd...</h1>
+                <DataDisplay />
               </Route>
               <Route exact path='/exam'>
                 <Patient />
