@@ -1,10 +1,14 @@
 import React from 'react'
 import { AppBar, Toolbar, Grid, InputBase, IconButton, Badge, makeStyles } from '@material-ui/core'
+import { Link } from "react-router-dom";
+
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+
+
 // import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
 // import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 // import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
-import SearchIcon from '@material-ui/icons/Search';
-
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -21,16 +25,44 @@ const useStyles = makeStyles(theme => ({
         '& .MuiSvgIcon-root': {
             marginRight: theme.spacing(1)
         }
+    },
+
+    navBar: {
+        // marginRight: "50px",
+        marginLeft: "50px"
+    },
+
+    link: {
+        textDecoration: "none",
+        color: "black",
+        fontSize: "20px",
+        marginLeft: theme.spacing(20),
+        "&:hover": {
+          color: "blue",
+          borderBottom: "1px solid white",}
     }
 }))
 
-export default function Header() {
-
+export default function Header(props) {
     const classes = useStyles();
 
     return (
         <AppBar position="static" className={classes.root}>
             <Toolbar>
+                <Typography variant="h6" color="primary">
+                    Imhotech
+                </Typography>
+
+                <Link to="/" className={classes.link}>
+              Home
+            </Link>
+            <Link to="/exam" className={classes.link}>
+              Exam
+            </Link>
+            <Link to="/view" className={classes.link}>
+              View
+            </Link>
+
                 {/* <Grid container
                     alignItems="center">
                     <Grid item>

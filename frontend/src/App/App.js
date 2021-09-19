@@ -58,24 +58,23 @@ function App() {
   return (
     <Router>
       <div>
-        <nav>
+        {/* <nav>
           <ul>
-            <li>
-              <Link to='/'>Home</Link>
-            </li>
-            <li>
-              <Link to='/exam'>Exam</Link>
-            </li>
             <li>
               <Link to='/view'>View</Link>
             </li>
           </ul>
-        </nav>
+        </nav> */}
 
         <ThemeProvider theme={theme}>
           <SideMenu />
           <div className={classes.appMain}>
             <Header />
+            {/* <Switch>
+              <Route exact from="/" render={props => <DataDisplay {...props} />} />
+              <Route exact path="/exam" render={props => <Patient {...props} />} />
+              <Route path='/view:id' render={props => <DataEntry {...props} />} />
+            </Switch> */}
             <Switch>
               <Route exact path='/view'>
                 <DataDisplay />
