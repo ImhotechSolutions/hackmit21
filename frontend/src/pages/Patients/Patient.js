@@ -1,5 +1,6 @@
 import React from 'react'
 import GestationalProfile from "./PatientForms/GestationalProfile";
+import EstimatedDateOfDelivery from './PatientForms/EstimatedDateOfDelivery';
 import PageHeader from "../../components/PageHeader";
 import PeopleOutlineTwoToneIcon from '@material-ui/icons/PeopleOutlineTwoTone';
 import { Paper,makeStyles } from '@material-ui/core';
@@ -32,6 +33,7 @@ const Patient = () => {
 
             <Paper className={classes.pageContent}>
                 <h1>Estimated Date of Delivery</h1>
+                <EstimatedDateOfDelivery />
             </Paper>
         </>
     )
