@@ -1,6 +1,13 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useRouteMatch,
+  useParams
+} from 'react-router-dom';
 import SideMenu from '../components/SideMenu';
 import { makeStyles, CssBaseline, createTheme, ThemeProvider } from '@material-ui/core';
 import Header from '../components/Header';
@@ -8,6 +15,7 @@ import PageHeader from '../components/PageHeader';
 
 import Patient from '../pages/Patients/Patient';
 import DataDisplay from '../pages/DataDisplay/DataDisplay';
+import DataEntry from '../pages/DataEntry/DataEntry';
 
 const theme = createTheme({
   palette   : {
@@ -61,6 +69,9 @@ function App() {
             <li>
               <Link to='/view'>View</Link>
             </li>
+            <li>
+              <Link to='/topics'>Topics</Link>
+            </li>
           </ul>
         </nav>
 
@@ -75,6 +86,7 @@ function App() {
               <Route exact path='/exam'>
                 <Patient />
               </Route>
+              <Route path='/view/:id' render={props => <DataEntry {...props} />} />
             </Switch>
           </div>
           <CssBaseline />
