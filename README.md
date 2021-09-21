@@ -6,6 +6,17 @@
 
 We built a solution for maternal physicans in South Africa to quickly and effectively conduct their examinations
 
+## HackMIT
+
+This a a project built for HackMIT 2021 on the Healthcare track. We recieved the 5th place award for the InterSystems challenge! 
+
+### Team Members:
+
+- James Zhang ([jameszhang-a](https://github.com/jameszhang-a))
+
+- Akshay Bodla ([AkBo24](https://github.com/AkBo24))
+
+
 ## Tech Stack
 
 Front End: React, JavaScript, Material.UI
